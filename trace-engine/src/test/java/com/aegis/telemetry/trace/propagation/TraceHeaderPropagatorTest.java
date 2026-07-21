@@ -1,14 +1,14 @@
 package com.aegis.telemetry.trace.propagation;
 
-import com.aegis.telemetry.contracts.trace.TraceHeaders;
-import com.aegis.telemetry.trace.context.TraceContext;
-import org.junit.jupiter.api.Test;
-
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+
+import com.aegis.telemetry.contracts.trace.TraceHeaders;
+import com.aegis.telemetry.trace.context.TraceContext;
 
 class TraceHeaderPropagatorTest {
 

@@ -1,11 +1,5 @@
 package com.aegis.telemetry.trace.factory;
 
-import com.aegis.telemetry.contracts.trace.TraceHeaders;
-import com.aegis.telemetry.trace.context.TraceContext;
-import com.aegis.telemetry.trace.context.TraceContextHolder;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -13,6 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+import com.aegis.telemetry.contracts.trace.TraceHeaders;
+import com.aegis.telemetry.trace.context.TraceContext;
+import com.aegis.telemetry.trace.context.TraceContextHolder;
 
 class TraceContextFactoryTest {
 

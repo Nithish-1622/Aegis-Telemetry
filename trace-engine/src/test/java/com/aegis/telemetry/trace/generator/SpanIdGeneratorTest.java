@@ -1,12 +1,11 @@
 package com.aegis.telemetry.trace.generator;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 class SpanIdGeneratorTest {
 

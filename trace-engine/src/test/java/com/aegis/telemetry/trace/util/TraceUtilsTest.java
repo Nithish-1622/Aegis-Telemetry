@@ -1,13 +1,13 @@
 package com.aegis.telemetry.trace.util;
 
-import com.aegis.telemetry.trace.context.TraceContext;
-import com.aegis.telemetry.trace.context.TraceContextHolder;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
 import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+import com.aegis.telemetry.trace.context.TraceContext;
+import com.aegis.telemetry.trace.context.TraceContextHolder;
 
 class TraceUtilsTest {
 
