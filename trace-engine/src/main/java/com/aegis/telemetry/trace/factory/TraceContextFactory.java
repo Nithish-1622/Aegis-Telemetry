@@ -1,16 +1,15 @@
 package com.aegis.telemetry.trace.factory;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.util.Map;
+import java.util.Objects;
+
 import com.aegis.telemetry.contracts.trace.TraceHeaders;
 import com.aegis.telemetry.trace.context.TraceContext;
 import com.aegis.telemetry.trace.context.TraceContextHolder;
 import com.aegis.telemetry.trace.generator.SpanIdGenerator;
 import com.aegis.telemetry.trace.generator.TraceIdGenerator;
-
-import java.time.Clock;
-import java.time.Instant;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 
 public final class TraceContextFactory {
 
