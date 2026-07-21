@@ -1,15 +1,5 @@
 package com.aegis.telemetry.contracts.event;
 
-import com.aegis.telemetry.contracts.enums.RuntimeEventType;
-import com.aegis.telemetry.contracts.enums.RuntimeStatus;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
@@ -17,6 +7,17 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import com.aegis.telemetry.contracts.enums.RuntimeEventType;
+import com.aegis.telemetry.contracts.enums.RuntimeStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
