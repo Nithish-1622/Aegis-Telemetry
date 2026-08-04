@@ -5,6 +5,7 @@ import com.aegis.telemetry.instrumentation.exception.RuntimeExceptionHandler;
 import com.aegis.telemetry.instrumentation.integration.RuntimeInstrumentationBridge;
 import com.aegis.telemetry.instrumentation.metrics.LatencyTracker;
 import com.aegis.telemetry.sdk.RuntimeTelemetrySdk;
+import com.aegis.telemetry.sdk.integration.RuntimeEventSink;
 import com.aegis.telemetry.trace.context.TraceContext;
 import com.aegis.telemetry.trace.context.TraceContextHolder;
 import com.aegis.telemetry.trace.factory.TraceContextFactory;
@@ -28,12 +29,14 @@ public final class RuntimeRequestInterceptor implements HandlerInterceptor {
     private final TraceContextFactory traceContextFactory;
     private final RuntimeInstrumentationBridge bridge;
     private final RuntimeExceptionHandler exceptionHandler;
+    private final RuntimeEventSink eventSink;
 
-    public RuntimeRequestInterceptor(RuntimeTelemetrySdk sdk, TraceContextFactory traceContextFactory, RuntimeInstrumentationBridge bridge, RuntimeExceptionHandler exceptionHandler) {
+    public RuntimeRequestInterceptor(RuntimeTelemetrySdk sdk, TraceContextFactory traceContextFactory, RuntimeInstrumentationBridge bridge, RuntimeExceptionHandler exceptionHandler, RuntimeEventSink eventSink) {
         this.sdk = Objects.requireNonNull(sdk, "sdk must not be null");
         this.traceContextFactory = Objects.requireNonNull(traceContextFactory, "traceContextFactory must not be null");
         this.bridge = Objects.requireNonNull(bridge, "bridge must not be null");
         this.exceptionHandler = Objects.requireNonNull(exceptionHandler, "exceptionHandler must not be null");
+        this.eventSink = eventSink;
     }
 
     @Override
@@ -44,6 +47,9 @@ public final class RuntimeRequestInterceptor implements HandlerInterceptor {
         request.setAttribute(TRACE_CONTEXT_ATTRIBUTE, traceContext);
         request.setAttribute(LATENCY_TRACKER_ATTRIBUTE, LatencyTracker.start());
         request.setAttribute(REQUEST_STARTED_EVENT_ATTRIBUTE, bridge.createRequestStarted(traceContext, request.getMethod(), request.getRequestURI(), request.getRemoteAddr()));
+        if (eventSink != null) {
+            eventSink.publish((com.aegis.telemetry.contracts.event.RuntimeEvent) request.getAttribute(REQUEST_STARTED_EVENT_ATTRIBUTE));
+        }
         return true;
     }
 
@@ -54,6 +60,9 @@ public final class RuntimeRequestInterceptor implements HandlerInterceptor {
             LatencyTracker tracker = (LatencyTracker) request.getAttribute(LATENCY_TRACKER_ATTRIBUTE);
             long latencyMillis = tracker == null ? 0L : tracker.stop();
             request.setAttribute(REQUEST_COMPLETED_EVENT_ATTRIBUTE, bridge.createRequestCompleted(traceContext, request.getMethod(), request.getRequestURI(), response.getStatus(), request.getRemoteAddr(), latencyMillis));
+            if (eventSink != null) {
+                eventSink.publish((com.aegis.telemetry.contracts.event.RuntimeEvent) request.getAttribute(REQUEST_COMPLETED_EVENT_ATTRIBUTE));
+            }
             if (ex != null) {
                 request.setAttribute(ERROR_EVENT_ATTRIBUTE, exceptionHandler.record(ex, traceContext, handler == null ? "unknown" : handler.getClass().getName(), "afterCompletion", latencyMillis));
             }

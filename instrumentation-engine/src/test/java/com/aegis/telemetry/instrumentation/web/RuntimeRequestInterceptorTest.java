@@ -40,7 +40,7 @@ class RuntimeRequestInterceptorTest {
                 .build());
 
         RuntimeInstrumentationBridge bridge = new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider());
-        RuntimeRequestInterceptor interceptor = new RuntimeRequestInterceptor(sdk, new TraceContextFactory("order-service"), bridge, new RuntimeExceptionHandler(bridge));
+        RuntimeRequestInterceptor interceptor = new RuntimeRequestInterceptor(sdk, new TraceContextFactory("order-service"), bridge, new RuntimeExceptionHandler(bridge), null);
         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/orders/1");
         request.addHeader("X-Trace-Id", "11111111-1111-1111-1111-111111111111");
         request.addHeader("X-Span-Id", "22222222-2222-2222-2222-222222222222");
