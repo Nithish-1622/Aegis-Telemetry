@@ -1,0 +1,201 @@
+﻿[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Aegis Telemetry                                                    [pom]
+[INFO] Shared Contracts                                                   [jar]
+[INFO] Trace Engine                                                       [jar]
+[INFO] Runtime SDK                                                        [jar]
+[INFO] Instrumentation Engine                                             [jar]
+[INFO] 
+[INFO] ----------------< com.aegis.telemetry:aegis-telemetry >-----------------
+[INFO] Building Aegis Telemetry 0.1.0-SNAPSHOT                            [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ----------------< com.aegis.telemetry:shared-contracts >----------------
+[INFO] Building Shared Contracts 0.1.0-SNAPSHOT                           [2/5]
+[INFO]   from shared-contracts\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shared-contracts ---
+[INFO] skip non existing resourceDirectory K:\Aegis-Telementry\shared-contracts\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ shared-contracts ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shared-contracts ---
+[INFO] skip non existing resourceDirectory K:\Aegis-Telementry\shared-contracts\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ shared-contracts ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ shared-contracts ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.aegis.telemetry.contracts.enums.RuntimeEventTypeTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.105 s -- in com.aegis.telemetry.contracts.enums.RuntimeEventTypeTest
+[INFO] Running com.aegis.telemetry.contracts.enums.RuntimeStatusTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.aegis.telemetry.contracts.enums.RuntimeStatusTest
+[INFO] Running com.aegis.telemetry.contracts.event.RuntimeEventTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.676 s -- in com.aegis.telemetry.contracts.event.RuntimeEventTest
+[INFO] Running com.aegis.telemetry.contracts.kafka.KafkaTopicsTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.aegis.telemetry.contracts.kafka.KafkaTopicsTest
+[INFO] Running com.aegis.telemetry.contracts.trace.TraceHeadersTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.aegis.telemetry.contracts.trace.TraceHeadersTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] ------------------< com.aegis.telemetry:trace-engine >------------------
+[INFO] Building Trace Engine 0.1.0-SNAPSHOT                               [3/5]
+[INFO]   from trace-engine\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ trace-engine ---
+[INFO] skip non existing resourceDirectory K:\Aegis-Telementry\trace-engine\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ trace-engine ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ trace-engine ---
+[INFO] skip non existing resourceDirectory K:\Aegis-Telementry\trace-engine\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ trace-engine ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ trace-engine ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.aegis.telemetry.trace.context.TraceContextHolderTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.126 s -- in com.aegis.telemetry.trace.context.TraceContextHolderTest
+[INFO] Running com.aegis.telemetry.trace.factory.TraceContextFactoryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 s -- in com.aegis.telemetry.trace.factory.TraceContextFactoryTest
+[INFO] Running com.aegis.telemetry.trace.generator.SpanIdGeneratorTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in com.aegis.telemetry.trace.generator.SpanIdGeneratorTest
+[INFO] Running com.aegis.telemetry.trace.generator.TraceIdGeneratorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.aegis.telemetry.trace.generator.TraceIdGeneratorTest
+[INFO] Running com.aegis.telemetry.trace.propagation.TraceHeaderPropagatorTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.aegis.telemetry.trace.propagation.TraceHeaderPropagatorTest
+[INFO] Running com.aegis.telemetry.trace.util.TraceUtilsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.aegis.telemetry.trace.util.TraceUtilsTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] ------------------< com.aegis.telemetry:runtime-sdk >-------------------
+[INFO] Building Runtime SDK 0.1.0-SNAPSHOT                                [4/5]
+[INFO]   from runtime-sdk\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ runtime-sdk ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ runtime-sdk ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ runtime-sdk ---
+[INFO] skip non existing resourceDirectory K:\Aegis-Telementry\runtime-sdk\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ runtime-sdk ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ runtime-sdk ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.aegis.telemetry.sdk.autoconfigure.RuntimeSdkAutoConfigurationTest
+15:56:50.320 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.2.Final
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.813 s -- in com.aegis.telemetry.sdk.autoconfigure.RuntimeSdkAutoConfigurationTest
+[INFO] Running com.aegis.telemetry.sdk.builder.RuntimeEventBuilderTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 s -- in com.aegis.telemetry.sdk.builder.RuntimeEventBuilderTest
+[INFO] Running com.aegis.telemetry.sdk.config.RuntimeSdkConfigurationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in com.aegis.telemetry.sdk.config.RuntimeSdkConfigurationTest
+[INFO] Running com.aegis.telemetry.sdk.context.RuntimeSdkContextTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.aegis.telemetry.sdk.context.RuntimeSdkContextTest
+[INFO] Running com.aegis.telemetry.sdk.factory.RuntimeEventFactoryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.aegis.telemetry.sdk.factory.RuntimeEventFactoryTest
+[INFO] Running com.aegis.telemetry.sdk.RuntimeTelemetrySdkTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.aegis.telemetry.sdk.RuntimeTelemetrySdkTest
+[INFO] Running com.aegis.telemetry.sdk.serialization.RuntimeEventSerializerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.106 s -- in com.aegis.telemetry.sdk.serialization.RuntimeEventSerializerTest
+[INFO] Running com.aegis.telemetry.sdk.validation.RuntimeEventValidatorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.053 s -- in com.aegis.telemetry.sdk.validation.RuntimeEventValidatorTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] -------------< com.aegis.telemetry:instrumentation-engine >-------------
+[INFO] Building Instrumentation Engine 0.1.0-SNAPSHOT                     [5/5]
+[INFO]   from instrumentation-engine\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ instrumentation-engine ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ instrumentation-engine ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ instrumentation-engine ---
+[INFO] skip non existing resourceDirectory K:\Aegis-Telementry\instrumentation-engine\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ instrumentation-engine ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ instrumentation-engine ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.aegis.telemetry.instrumentation.aop.RuntimeMethodInterceptorTest
+15:56:52.278 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.2.Final
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.562 s -- in com.aegis.telemetry.instrumentation.aop.RuntimeMethodInterceptorTest
+[INFO] Running com.aegis.telemetry.instrumentation.autoconfigure.RuntimeInstrumentationAutoConfigurationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.378 s -- in com.aegis.telemetry.instrumentation.autoconfigure.RuntimeInstrumentationAutoConfigurationTest
+[INFO] Running com.aegis.telemetry.instrumentation.exception.RuntimeExceptionHandlerTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.aegis.telemetry.instrumentation.exception.RuntimeExceptionHandlerTest
+[INFO] Running com.aegis.telemetry.instrumentation.integration.RuntimeInstrumentationBridgeTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.aegis.telemetry.instrumentation.integration.RuntimeInstrumentationBridgeTest
+[INFO] Running com.aegis.telemetry.instrumentation.metadata.RuntimeMetadataProviderTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.aegis.telemetry.instrumentation.metadata.RuntimeMetadataProviderTest
+[INFO] Running com.aegis.telemetry.instrumentation.metrics.LatencyTrackerTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in com.aegis.telemetry.instrumentation.metrics.LatencyTrackerTest
+[INFO] Running com.aegis.telemetry.instrumentation.thread.ThreadMetadataProviderTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.aegis.telemetry.instrumentation.thread.ThreadMetadataProviderTest
+[INFO] Running com.aegis.telemetry.instrumentation.web.RuntimeRequestInterceptorTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.aegis.telemetry.instrumentation.web.RuntimeRequestInterceptorTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Aegis Telemetry 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Aegis Telemetry .................................... SUCCESS [  0.004 s]
+[INFO] Shared Contracts ................................... SUCCESS [  2.891 s]
+[INFO] Trace Engine ....................................... SUCCESS [  1.188 s]
+[INFO] Runtime SDK ........................................ SUCCESS [  2.326 s]
+[INFO] Instrumentation Engine ............................. SUCCESS [  3.215 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.113 s
+[INFO] Finished at: 2026-07-21T15:56:54+05:30
+[INFO] ------------------------------------------------------------------------
+
