@@ -13,7 +13,6 @@ import com.aegis.telemetry.trace.context.TraceContextHolder;
 import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
-import java.util.UUID;
 
 public final class RuntimeEventBuilder {
 

@@ -7,7 +7,9 @@ import com.aegis.telemetry.instrumentation.metadata.RuntimeMetadataProvider;
 import com.aegis.telemetry.instrumentation.thread.ThreadMetadataProvider;
 import com.aegis.telemetry.instrumentation.web.RuntimeRequestInterceptor;
 import com.aegis.telemetry.sdk.RuntimeTelemetrySdk;
+import com.aegis.telemetry.sdk.integration.RuntimeEventSink;
 import com.aegis.telemetry.trace.factory.TraceContextFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -42,13 +44,13 @@ public class RuntimeInstrumentationAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(RuntimeTelemetrySdk.class)
-    public RuntimeRequestInterceptor runtimeRequestInterceptor(RuntimeTelemetrySdk sdk, TraceContextFactory traceContextFactory, RuntimeInstrumentationBridge bridge, RuntimeExceptionHandler exceptionHandler) {
-        return new RuntimeRequestInterceptor(sdk, traceContextFactory, bridge, exceptionHandler);
+    public RuntimeRequestInterceptor runtimeRequestInterceptor(RuntimeTelemetrySdk sdk, TraceContextFactory traceContextFactory, RuntimeInstrumentationBridge bridge, RuntimeExceptionHandler exceptionHandler, ObjectProvider<RuntimeEventSink> eventSinkProvider) {
+        return new RuntimeRequestInterceptor(sdk, traceContextFactory, bridge, exceptionHandler, eventSinkProvider.getIfAvailable());
     }
 
     @Bean
     @ConditionalOnBean(RuntimeTelemetrySdk.class)
-    public RuntimeMethodInterceptor runtimeMethodInterceptor(RuntimeTelemetrySdk sdk, TraceContextFactory traceContextFactory, RuntimeInstrumentationBridge bridge, RuntimeExceptionHandler exceptionHandler) {
-        return new RuntimeMethodInterceptor(sdk, traceContextFactory, bridge, exceptionHandler);
+    public RuntimeMethodInterceptor runtimeMethodInterceptor(RuntimeTelemetrySdk sdk, TraceContextFactory traceContextFactory, RuntimeInstrumentationBridge bridge, RuntimeExceptionHandler exceptionHandler, ObjectProvider<RuntimeEventSink> eventSinkProvider) {
+        return new RuntimeMethodInterceptor(sdk, traceContextFactory, bridge, exceptionHandler, eventSinkProvider.getIfAvailable());
     }
 }
