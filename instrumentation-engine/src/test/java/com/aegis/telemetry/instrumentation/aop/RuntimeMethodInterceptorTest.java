@@ -38,7 +38,7 @@ class RuntimeMethodInterceptorTest {
                 .heartbeatInterval(Duration.ofSeconds(30))
                 .build());
 
-        RuntimeMethodInterceptor interceptor = new RuntimeMethodInterceptor(sdk, new TraceContextFactory("order-service"), new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider()), new RuntimeExceptionHandler(new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider())));
+        RuntimeMethodInterceptor interceptor = new RuntimeMethodInterceptor(sdk, new TraceContextFactory("order-service"), new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider()), new RuntimeExceptionHandler(new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider())), null);
         ProceedingJoinPoint joinPoint = mock(ProceedingJoinPoint.class);
         MethodSignature signature = mock(MethodSignature.class);
         when(joinPoint.getSignature()).thenReturn(signature);
@@ -62,7 +62,7 @@ class RuntimeMethodInterceptorTest {
                 .heartbeatInterval(Duration.ofSeconds(30))
                 .build());
 
-        RuntimeMethodInterceptor interceptor = new RuntimeMethodInterceptor(sdk, new TraceContextFactory("order-service"), new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider()), new RuntimeExceptionHandler(new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider())));
+        RuntimeMethodInterceptor interceptor = new RuntimeMethodInterceptor(sdk, new TraceContextFactory("order-service"), new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider()), new RuntimeExceptionHandler(new RuntimeInstrumentationBridge(sdk, new RuntimeMetadataProvider(sdk), new ThreadMetadataProvider())), null);
         ProceedingJoinPoint joinPoint = mock(ProceedingJoinPoint.class);
         MethodSignature signature = mock(MethodSignature.class);
         when(joinPoint.getSignature()).thenReturn(signature);
