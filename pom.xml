@@ -20,6 +20,7 @@
         <module>event-publisher</module>
         <module>service-registry</module>
         <module>runtime-config</module>
+        <module>telemetry-bootstrap</module>
         <module>failure-simulator</module>
         <module>demo-services</module>
     </modules>
