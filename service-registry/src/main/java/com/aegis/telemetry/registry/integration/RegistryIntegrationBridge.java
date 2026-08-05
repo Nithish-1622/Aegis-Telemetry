@@ -59,7 +59,7 @@ public class RegistryIntegrationBridge {
         logger.info("Registered service {} instance {}", registered.serviceName(), registered.instanceId());
     }
 
-    @Scheduled(fixedDelayString = "#{@serviceRegistryProperties.heartbeatIntervalMs}")
+    @Scheduled(fixedDelayString = "${aegis.registry.heartbeat-interval-ms:30000}")
     public void sendHeartbeat() {
         ServiceInstance current = registeredInstance.get();
         if (current == null || !sdk.isInitialized()) {
