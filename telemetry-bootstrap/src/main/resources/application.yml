@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: aegis-telemetry
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    root: INFO
+
+aegis:
+  kafka:
+    bootstrap-servers: localhost:19092
+  runtime:
+    service-name: telemetry-bootstrap
+    instance-id: telemetry-001
+    environment: bootstrap
+  registry:
+    default-version: 1.0.0
+    host: localhost
+    port: 8080
+    heartbeat-interval-ms: 30000
+    heartbeat-timeout-ms: 90000

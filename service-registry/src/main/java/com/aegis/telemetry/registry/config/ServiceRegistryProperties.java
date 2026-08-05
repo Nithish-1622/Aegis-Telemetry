@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-@ConfigurationProperties(prefix = "aegis.telemetry.registry")
+@ConfigurationProperties(prefix = "aegis.registry")
 public class ServiceRegistryProperties {
 
     @NotBlank
