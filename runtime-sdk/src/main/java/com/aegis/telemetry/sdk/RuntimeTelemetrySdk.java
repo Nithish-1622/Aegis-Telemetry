@@ -75,6 +75,12 @@ public final class RuntimeTelemetrySdk {
         return context;
     }
 
+    public synchronized RuntimeSdkConfiguration updateConfiguration(RuntimeSdkConfiguration configuration) {
+        RuntimeSdkConfiguration resolvedConfiguration = configuration == null ? defaultConfiguration() : configuration;
+        context.updateConfiguration(resolvedConfiguration);
+        return resolvedConfiguration;
+    }
+
     public RuntimeEventValidator getValidator() {
         return validator;
     }
