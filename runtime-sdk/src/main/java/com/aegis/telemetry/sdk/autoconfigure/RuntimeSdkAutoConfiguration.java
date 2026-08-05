@@ -23,6 +23,7 @@ public class RuntimeSdkAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean(RuntimeSdkConfiguration.class)
     public RuntimeSdkConfiguration runtimeSdkConfiguration() {
         return RuntimeSdkConfiguration.builder()
                 .applicationName(System.getProperty("aegis.telemetry.application-name", "aegis-telemetry"))
