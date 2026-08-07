@@ -1,0 +1,64 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.8.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+  kafka:
+    image: confluentinc/cp-kafka:7.8.0
+    depends_on: [zookeeper]
+    ports: ["19092:19092"]
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:19092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:19092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: aegis_runtime
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: ["5432:5432"]
+  runtime-intelligence:
+    image: maven:3.9.11-eclipse-temurin-25
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    command: ["mvn", "-q", "-pl", "telemetry-bootstrap", "-am", "-DskipTests", "spring-boot:run"]
+    environment:
+      SERVER_PORT: 8084
+  gateway:
+    image: maven:3.9.11-eclipse-temurin-25
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    command: ["mvn", "-q", "-f", "demo-services/gateway-service/pom.xml", "-DskipTests", "spring-boot:run"]
+    environment:
+      ORDER_SERVICE_URL: http://order:8081
+    ports: ["8080:8080"]
+  order:
+    image: maven:3.9.11-eclipse-temurin-25
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    command: ["mvn", "-q", "-f", "demo-services/order-service/pom.xml", "-DskipTests", "spring-boot:run"]
+    environment:
+      PAYMENT_SERVICE_URL: http://payment:8082
+      INVENTORY_SERVICE_URL: http://inventory:8083
+    ports: ["8081:8081"]
+  payment:
+    image: maven:3.9.11-eclipse-temurin-25
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    command: ["mvn", "-q", "-f", "demo-services/payment-service/pom.xml", "-DskipTests", "spring-boot:run"]
+    ports: ["8082:8082"]
+  inventory:
+    image: maven:3.9.11-eclipse-temurin-25
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    command: ["mvn", "-q", "-f", "demo-services/inventory-service/pom.xml", "-DskipTests", "spring-boot:run"]
+    ports: ["8083:8083"]
