@@ -19,7 +19,10 @@ public class RuntimeSdkAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public ObjectMapper runtimeObjectMapper() {
-        return new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
+        mapper.disable(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return mapper;
     }
 
     @Bean
@@ -60,7 +63,11 @@ public class RuntimeSdkAutoConfiguration {
     @Bean
     public RuntimeTelemetrySdk runtimeTelemetrySdk(RuntimeSdkConfiguration configuration) {
         RuntimeTelemetrySdk sdk = RuntimeTelemetrySdk.getInstance();
-        sdk.initialize(configuration);
+        if (!sdk.isInitialized()) {
+            sdk.initialize(configuration);
+        } else {
+            sdk.updateConfiguration(configuration);
+        }
         return sdk;
     }
 
