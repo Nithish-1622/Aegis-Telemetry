@@ -1,0 +1,20 @@
+# Multi-stage Dockerfile for Aegis Demo Microservices
+FROM eclipse-temurin:25-jdk-alpine AS builder
+RUN apk add --no-cache maven
+ARG MODULE_NAME=gateway-service
+WORKDIR /build
+
+# Copy full repository context so Maven parent reactor modules resolve
+COPY . .
+
+RUN mvn clean package -pl demo-services/${MODULE_NAME} -am -DskipTests
+
+# Runtime stage
+FROM eclipse-temurin:25-jre-alpine
+ARG MODULE_NAME=gateway-service
+WORKDIR /app
+
+COPY --from=builder /build/demo-services/${MODULE_NAME}/target/${MODULE_NAME}-0.1.0-SNAPSHOT.jar /app/app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
