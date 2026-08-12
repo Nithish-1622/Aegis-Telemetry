@@ -4,15 +4,16 @@ import com.aegis.telemetry.config.autoconfigure.RuntimeConfigurationAutoConfigur
 import com.aegis.telemetry.registry.autoconfigure.ServiceRegistryAutoConfiguration;
 import com.aegis.telemetry.sdk.autoconfigure.RuntimeSdkAutoConfiguration;
 import com.aegis.telemetry.sdk.config.RuntimeSdkConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 @AutoConfiguration
-    @Import({RuntimeSdkAutoConfiguration.class, ServiceRegistryAutoConfiguration.class, RuntimeConfigurationAutoConfiguration.class})
-    @EnableConfigurationProperties(BootstrapProperties.class)
+@AutoConfigureBefore(RuntimeSdkAutoConfiguration.class)
+@EnableConfigurationProperties(BootstrapProperties.class)
 public class BootstrapConfiguration {
 
 	@Bean
