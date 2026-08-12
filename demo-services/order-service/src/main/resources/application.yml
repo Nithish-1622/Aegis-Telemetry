@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: order-service
+app:
+  payment:
+    base-url: ${PAYMENT_SERVICE_URL:http://localhost:8082}
+  inventory:
+    base-url: ${INVENTORY_SERVICE_URL:http://localhost:8083}

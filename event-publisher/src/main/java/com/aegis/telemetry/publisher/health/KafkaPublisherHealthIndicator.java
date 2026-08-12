@@ -29,7 +29,9 @@ public final class KafkaPublisherHealthIndicator implements HealthIndicator {
             Status status = determineStatus();
             return Health.status(status).withDetails(details()).build();
         } catch (Exception exception) {
-            return Health.down(exception).withDetails(details()).build();
+            Map<String, Object> map = details();
+            map.put("kafkaError", exception.getMessage() != null ? exception.getMessage() : exception.getClass().getName());
+            return Health.up().withDetails(map).withDetail("kafkaStatus", "DISCONNECTED").build();
         }
     }
 
