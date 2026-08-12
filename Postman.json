@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "aegis-telemetry-postman-collection",
+		"name": "Aegis Platform (Telemetry & Runtime Intelligence)",
+		"description": "Complete Postman collection for testing Person 1 (Aegis Telemetry Generator), Person 2 (Aegis Runtime Intelligence), and Demo Microservices.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Person 1 - Aegis Telemetry (Port 8085)",
+			"item": [
+				{
+					"name": "Ping Endpoint (REQUEST_STARTED)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{telemetry_url}}/demo/ping",
+							"host": [
+								"{{telemetry_url}}"
+							],
+							"path": [
+								"demo",
+								"ping"
+							]
+						},
+						"description": "Triggers a REQUEST_STARTED event and publishes to Kafka runtime.events topic."
+					},
+					"response": []
+				},
+				{
+					"name": "Trace Endpoint (REQUEST_COMPLETED)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{telemetry_url}}/demo/trace",
+							"host": [
+								"{{telemetry_url}}"
+							],
+							"path": [
+								"demo",
+								"trace"
+							]
+						},
+						"description": "Triggers a REQUEST_COMPLETED event with execution duration timing."
+					},
+					"response": []
+				},
+				{
+					"name": "Error Endpoint (ERROR_OCCURRED)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{telemetry_url}}/demo/error",
+							"host": [
+								"{{telemetry_url}}"
+							],
+							"path": [
+								"demo",
+								"error"
+							]
+						},
+						"description": "Simulates an exception, extracts stack trace info, and publishes to Kafka runtime.errors topic."
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{telemetry_url}}/actuator/health",
+							"host": [
+								"{{telemetry_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Checks Aegis Telemetry application health and Kafka publisher status."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Demo Microservices (Distributed Tracing)",
+			"item": [
+				{
+					"name": "Create Order (Gateway -> Order -> Payment/Inventory)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": \"laptop\",\n  \"quantity\": 1,\n  \"price\": 1200.00\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/orders",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "Triggers a multi-hop order creation call propagating X-Aegis-Trace-Id across microservices."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Person 2 - Aegis Runtime Intelligence (Port 8080)",
+			"item": [
+				{
+					"name": "Dashboard Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/dashboard",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"dashboard"
+							]
+						},
+						"description": "Returns overall dashboard summary metrics (total events, active services, error rate %, latency)."
+					},
+					"response": []
+				},
+				{
+					"name": "Dashboard Trends",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/dashboard/trends?window=1h",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"dashboard",
+								"trends"
+							],
+							"query": [
+								{
+									"key": "window",
+									"value": "1h"
+								}
+							]
+						},
+						"description": "Returns request volume and error trend analytics over time windows."
+					},
+					"response": []
+				},
+				{
+					"name": "Runtime Health Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/health",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"health"
+							]
+						},
+						"description": "Returns service instance health status and SLA metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Service Dependency Topology Graph",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/topology",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"topology"
+							]
+						},
+						"description": "Returns service-to-service dependency graph nodes and edges."
+					},
+					"response": []
+				},
+				{
+					"name": "Trace Timeline Reconstruction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/timelines",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"timelines"
+							]
+						},
+						"description": "Returns reconstructed execution timeline sequences for ingested traces."
+					},
+					"response": []
+				},
+				{
+					"name": "Anomaly Detection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/anomalies",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"anomalies"
+							]
+						},
+						"description": "Returns detected high-latency anomalies, retry amplification, and thread timeouts."
+					},
+					"response": []
+				},
+				{
+					"name": "Retry Intelligence",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/retries",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"retries"
+							]
+						},
+						"description": "Returns retry attempt metrics and fault recovery statistics."
+					},
+					"response": []
+				},
+				{
+					"name": "Runtime System Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{runtime_url}}/runtime/metrics",
+							"host": [
+								"{{runtime_url}}"
+							],
+							"path": [
+								"runtime",
+								"metrics"
+							]
+						},
+						"description": "Returns system-wide performance and event metrics."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "telemetry_url",
+			"value": "http://localhost:8085",
+			"type": "string"
+		},
+		{
+			"key": "runtime_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "gateway_url",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}
