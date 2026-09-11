@@ -102,7 +102,7 @@ class PlatformPerformanceBenchmarkTest {
 
         int iterations = 10_000;
         long startTime = System.nanoTime();
-
+        
         for (int i = 0; i < iterations; i++) {
             String json = serializer.toJson(event);
             assertThat(json).isNotEmpty();
