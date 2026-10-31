@@ -6,6 +6,7 @@
     <parent><groupId>com.aegis.telemetry</groupId><artifactId>demo-services</artifactId><version>0.1.0-SNAPSHOT</version></parent>
     <artifactId>gateway-service</artifactId>
     <name>Gateway Service</name>
+    <properties><maven.deploy.skip>true</maven.deploy.skip></properties>
     <packaging>jar</packaging>
     <dependencies>
         <dependency><groupId>com.aegis.telemetry</groupId><artifactId>runtime-sdk</artifactId><version>${project.version}</version></dependency>
@@ -18,3 +19,4 @@
         <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-test</artifactId><scope>test</scope></dependency>
     </dependencies>
 </project>
+

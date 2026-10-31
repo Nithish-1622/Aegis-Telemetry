@@ -1,0 +1,69 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+  workflow_dispatch:
+
+# No PAT anywhere: the workflow authenticates with the ephemeral GITHUB_TOKEN.
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build, test & deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      REGISTRY_URL: https://maven.pkg.github.com/Nithish-1622/Aegis-Telemetry
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # setup-java writes ~/.m2/settings.xml with a <server id="github"> whose
+      # username/password are read from the GITHUB_ACTOR / GITHUB_TOKEN env vars.
+      - name: Set up JDK 25 + GitHub Packages credentials
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+
+      # v1.4.2 -> publish as 1.4.2 instead of 0.1.0-SNAPSHOT
+      - name: Set release version from tag
+        if: github.ref_type == 'tag'
+        run: mvn -B org.codehaus.mojo:versions-maven-plugin:2.22.0:set -DnewVersion="${GITHUB_REF_NAME#v}" -DgenerateBackupPoms=false
+
+      # clean first: stale IDE-generated classes in target/ break surefire discovery.
+      - name: Build, test and deploy
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B clean deploy
+
+      # Proves the upload is actually consumable: an EMPTY local repository must be
+      # able to resolve the artifact straight from GitHub Packages.
+      - name: Verify artifact resolves from the registry
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(mvn -B -q -DforceStdout help:evaluate -Dexpression=project.version | tail -n1)
+          echo "Resolving com.aegis.telemetry:shared-contracts:${VERSION}"
+          rm -rf "$RUNNER_TEMP/verify-m2"
+          mvn -B -Dmaven.repo.local="$RUNNER_TEMP/verify-m2" \
+            org.apache.maven.plugins:maven-dependency-plugin:3.7.1:get \
+            -Dartifact=com.aegis.telemetry:shared-contracts:${VERSION} \
+            -DremoteRepositories=github::default::${REGISTRY_URL} \
+            -U
+          echo "OK: ${VERSION} resolved from ${REGISTRY_URL}"
