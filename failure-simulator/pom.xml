@@ -12,6 +12,10 @@
 
     <artifactId>failure-simulator</artifactId>
     <name>Failure Simulator</name>
+    <!-- Benchmark harness: never published to the registry -->
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.aegis.telemetry</groupId>

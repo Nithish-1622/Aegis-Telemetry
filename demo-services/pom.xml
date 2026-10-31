@@ -10,6 +10,10 @@
     </parent>
     <artifactId>demo-services</artifactId>
     <name>Demo Services</name>
+    <!-- Demo applications (and their children): never published to the registry -->
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
     <packaging>pom</packaging>
     <modules>
         <module>gateway-service</module>
