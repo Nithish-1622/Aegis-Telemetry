@@ -49,7 +49,7 @@ flowchart TD
 ```http
 X-Aegis-Trace-Id: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
 X-Aegis-Span-Id: 1024a18c-8f92-4d9a-9861-123456789abc
-X-Aegis-Parent-Span-Id: 00000000-0000-0000-0000-000000000001
+X-Aegis-Parent-Span-Id: 00000000-0000-0000-0000-000000000001 
 X-Aegis-Sampled: true
 ```
 
