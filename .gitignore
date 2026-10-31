@@ -4,3 +4,5 @@ target/
 *.log
 *.iml
 FRONTEND_SPECIFICATION.md
+.freebuff
+

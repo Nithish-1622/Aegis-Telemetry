@@ -128,6 +128,7 @@ Detailed technical documentation is available in the [`docs/`](file:///k:/Aegis-
 - 🛠 [**Developer Setup Guide**](file:///k:/Aegis-Telementry/docs/developer-setup-guide.md) - Local Java 25 environment setup and build instructions.
 - 🔌 [**SDK Integration Guide**](file:///k:/Aegis-Telementry/docs/integration-guide.md) - How to integrate Aegis Telemetry SDK into new Spring Boot microservices.
 - 🔧 [**Troubleshooting Guide**](file:///k:/Aegis-Telementry/docs/troubleshooting-guide.md) - Diagnosing connection timeouts, missing headers, and serialization issues.
+- 📦 [**Publishing Guide**](docs/publishing-guide.md) - Publishing Aegis Telemetry & Runtime to GitHub Packages and consuming them from other projects.
 
 ---
 

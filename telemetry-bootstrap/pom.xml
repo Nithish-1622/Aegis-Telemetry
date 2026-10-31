@@ -12,6 +12,10 @@
 
     <artifactId>telemetry-bootstrap</artifactId>
     <name>Telemetry Bootstrap</name>
+    <!-- Runnable application: never published to the registry -->
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
     <packaging>jar</packaging>
 
     <dependencies>

@@ -3,15 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.aegis.telemetry</groupId>
     <artifactId>aegis-telemetry</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <name>Aegis Telemetry</name>
     <description>Telemetry generation platform for the Aegis suite.</description>
-
     <modules>
         <module>shared-contracts</module>
         <module>trace-engine</module>
@@ -45,7 +42,60 @@
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages — Aegis Telemetry (releases)</name>
+            <url>https://maven.pkg.github.com/Nithish-1622/Aegis-Telemetry</url>
+        </repository>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub Packages — Aegis Telemetry (snapshots)</name>
+            <url>https://maven.pkg.github.com/Nithish-1622/Aegis-Telemetry</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
+        <plugins>
+            <!-- Attach -sources.jar to every published library -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <skipIfEmpty>true</skipIfEmpty>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Attach -javadoc.jar to every published library -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <doclint>none</doclint>
+                    <quiet>true</quiet>
+                    <failOnError>false</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
